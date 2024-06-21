@@ -1,0 +1,36 @@
+// nesting 품다
+.box {
+  padding: 20px;
+  border: 5px solid black;
+  border-radius: 20px;
+}
+
+// ✍ Nesting [1] : 모든것을 품어버린다.
+.box {
+  >.box {
+    border-color: #000;
+
+    &:hover {
+      // 💬 &는 &가 포함된것까지의 의 부모 경로를 붙인다.
+      background-color: green;
+    }
+
+    .box {
+      border-color: #666;
+
+      &>span {font-size: 20px;}
+      @media (max-width:767px){font-size: 30px;}
+    }
+    // 🌟 반응형 미디어 쿼리를 안에 만들기도 한다.
+    @media (max-width:400px){
+      font-size: 16px;
+    }
+  }
+}
+
+// ✍ Nesting [2] : 부모 경로를 일정 생략하여 후의 경로만을 적는다.
+.box>.box {
+  &>.box {
+    font-size: 12px;
+  }
+}

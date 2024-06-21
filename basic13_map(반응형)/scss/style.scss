@@ -1,0 +1,5 @@
+// map-get(map, key) : map에서 지정 key의 값을 반환
+
+// $fz : fz(font-size)에 사용하려고 임의로 약자로 줄였다.
+$fz:("small":12px, "normal":18px, "large":24px);
+h1{font-size: map-get($fz , "normal")}

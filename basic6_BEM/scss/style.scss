@@ -1,0 +1,19 @@
+// ✍ BEM 구조 - id나 class 등의 이름을 구조적(하이폰을 이용해)으로 붙여주는 방법
+
+// B : Block - 특정 독립적인 요소  
+// E : Element - 하위 요소
+// M : Modifier - 수정자
+
+// B 독립적인 요소 👉 .text
+// E 하위요소들(__) 👉 .text-box__title, .text-box__desc 와 같이 .text-box의 하위요소임을 알려준다.
+// M 수정자(--) 👉 .text-box__title--red
+// - , _ 👉 btnView btn_view btn-view 와 같이 띄워쓰기의 의미로 사용된다. 
+
+.text-box {
+    width: 300px; border: 1px solid #333; position: relative;
+    // &>.text-box__title{}
+    &>&__title{ // : text-box가 중복되어 생략할 수 있다.
+        color:blue;
+        &--red{color:red;}
+    }
+}

@@ -1,0 +1,53 @@
+//@extent는 공통적인것을 묶는다.
+//@mixin는 매개 변수를 통해 다른 값을 할당할 수 있다.
+//@maxin는 활용도가 다양하다.
+//@content를 사용하면 공통적인 부분과 추가해야하는 부분이 있을때 사용할 수 있다.
+
+//@mixin mx10{} // mx10는 함수 : 매개변수가 없을때는 ()괄호를 생략할 수 있다.
+//@include mx10{} // 호출하는 방법 1️⃣
+//@include mx10() // 호출하는 방법 2️⃣
+
+//@mixin 여러가지 속성과 값의 조합
+
+@mixin mx1($bg, $fs){
+    background-color: $bg;
+    font-size: $fs;
+    @content; // 2️⃣ @content 라는 명령어를 통해 추가된다.
+}
+
+.cls{
+    // 매개변수를 통해 함수에 포함된 모든 값들이 호출된다.
+    @include mx1(#000, 40px){
+        border: 3px solid orange; // 1️⃣ {이곳}에서 추가된 내용이
+    }
+}
+
+// 기존 mixin에 @content를 추가하지 않을 경우, mixin mx1의 포함된 내용만이 사용할 수 있다.
+// 하지만, @content를 사용할 경우 추가적으로 내용이 있다고 사용할 수 있다.
+
+
+.cls2{
+    @include mx1(#000, 40px){
+        margin-bottom: 30px;
+    }
+}
+
+// .cls과 .cls2에는 각각 다른 내용의 {값}을 주었다.
+// 🌟🌟 원본을 훼손하지 않는 선에서 추가적인 내용을 덧붙일 수 있다.
+
+@mixin mx2($bg){
+    .cls3{ 
+        background-color: $bg;
+    }
+}
+
+@include mx2(blue);
+// .cls3 이라는 클래스를 함께 던져줄 경우, .cls3의 값까지 호출된다.
+
+@mixin mx3($cls-name, $bg){
+    .#{$cls-name}{background-color: $bg;}
+    // 클래스명의 경우, 보간법#{}을 사용해야 한다.
+    // 보간법을 사용하지 않으면 에러가 뜬다.
+}
+
+@include mx3("green",blue)

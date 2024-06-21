@@ -1,0 +1,17 @@
+/* Error: expected selector.
+ *    ,
+ * 16 | npx sass 변환할폴더/파일:폴더/파일
+ *    |               ^
+ *    '
+ *   scss\style.scss 16:15  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: expected selector.\a    \2577 \a 16 \2502  npx sass \bcc0 \d658 \d560 \d3f4 \b354 /\d30c \c77c :\d3f4 \b354 /\d30c \c77c \d\a    \2502                ^\a    \2575 \a   scss\\style.scss 16:15  root stylesheet";
+}

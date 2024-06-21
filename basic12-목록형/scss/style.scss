@@ -1,0 +1,32 @@
+$primary-color:skyblue;
+
+// 목록형
+$box-types:('big','mid','small');
+$bgs:(red,green,blue);
+
+
+.box {
+    color:$primary-color;
+    $i:1;
+    // 🌟 목록형중 값을 하나만 가져와 쓰는 방법 1️⃣
+    color:nth($list: $bgs, $n:2);
+    // 🌟 목록형중 값을 하나만 가져와 쓰는 방법 2️⃣
+    color:nth($bgs,$i);
+}
+
+
+.box2{
+//     @each 변수 in 목록형{
+//         .box-#{변수}{
+
+//         }
+//     }
+    $i:1;
+    @each $bt in $box-types{
+        .box-#{$bt}{
+            font-size: #{2 - 0.3*$i}em;
+        }
+        $i:$i+1;
+    }
+
+}

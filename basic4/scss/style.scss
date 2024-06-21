@@ -1,0 +1,40 @@
+@use "./partials/vars";
+// @use "./partials/vars" as v1;
+
+$var1:#f00; // : 전역변수. 어디서든 사용할 수 있다.
+
+// h2{color:vars.$color-primary} : 원래 부르는 형식
+h2{color:vars.$color-primary} // : 별명을 붙여, 별명으로 부르는 형식
+
+.box{
+    background-color: $var1;
+
+    $spacer20px:vars.$spacer * 4; // 지역 변수 : {} 안에서만 살 수 있다. 밖에서는 사용할 수 없다.
+    margin-top: $spacer20px;
+}
+.box2 {
+    // margin-top:$spacer20px; : 지역변수는 바깥에서 사용할 수 없기 때문에 인식을 못하고 오류가 뜬다.
+}
+
+// ✍ 복습
+$width:10;
+$widthPx:10px;
+$class-name:cls;
+$class-name2:".cls";
+
+.box3{
+    width:$widthPx;
+    width:#{$width}px; // 👀 : 보간법 사용
+    width:#{$width * $width}px;
+    height: $widthPx * 10; 
+    // : widthPx(10px) * 10은 가능하나, 뒤에 10px로 px을 중복하여 사용하면 에러가 뜬다.
+    height: $width + 10px;
+    // 곱하기는 에러가 뜨지만 더하기는 px을 붙여 사용 가능하다. ❗❗❗❗
+}
+
+// $class-name2 {} : 는 불가. 💛💛💛반드시 클래스명으로 사용하려면 보간법을 사용 ❗❗ 하여야 한다. 
+#{$class-name2} {width:100px;}
+.#{$class-name} {width:100px;}
+// .$class-name : 는 불가. 반드시 보간법으로 싸고 앞에 사용해야 한다.
+#{$class-name2}_btn {width:100px;}
+.#{$class-name}_btn {width:100px;}
